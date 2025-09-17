@@ -8,10 +8,6 @@ namespace WebApiData.Migrations
     /// <inheritdoc />
     public partial class blog : Migration
     {
-        public string Title;
-        public string Content;
-        public int CreatedById;
-
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

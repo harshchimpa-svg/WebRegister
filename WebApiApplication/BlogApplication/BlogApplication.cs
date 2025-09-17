@@ -20,12 +20,16 @@ namespace WebApiApplication.Services
         public async Task<IEnumerable<Blog>> GetByUserIdAsync(int userId) => await _blogRepo.GetByUserIdAsync(userId);
 
 
+        public async Task AddAsync(Blog blog)
+        {
+            await _blogRepo.AddAsync(blog);
+            await _blogRepo.SaveAsync();
+        }
         public async Task UpdateAsync(Blog blog)
         {
             _blogRepo.Update(blog);
             await _blogRepo.SaveAsync();
         }
-
         public async Task DeleteAsync(int id)
         {
             var blog = await _blogRepo.GetByIdAsync(id);
@@ -34,11 +38,6 @@ namespace WebApiApplication.Services
                 _blogRepo.Delete(blog);
                 await _blogRepo.SaveAsync();
             }
-        }
-
-        Task IBlogApplication.AddAsync(Blog blog)
-        {
-            throw new NotImplementedException();
         }
     }
 }
